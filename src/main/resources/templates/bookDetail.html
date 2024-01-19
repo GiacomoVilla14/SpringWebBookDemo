@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+            border-right: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        td {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Autore</th>
+        <th>Anno di pubblicazione</th>
+        <th>Prezzo</th>
+        <th>Cancella</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${book.getTitle()}"></td>
+        <td th:text="${book.getAuthor()}"></td>
+        <td th:text="${book.getPublicationYear()}"></td>
+        <td th:text="${book.getPrice()}"></td>
+        <td><a th:href="@{/remove(bookId=${book.getId()})}"> Remove book </a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

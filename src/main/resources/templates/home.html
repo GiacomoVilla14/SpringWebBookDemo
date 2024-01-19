@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            color: #007bff; /
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+            border-right: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        td {
+            background-color: white;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<h1>Home</h1>
+<a href="/createbook">Aggiungi un libro</a>
+<a href="/logout" class="logout-btn">Logout</a>
+<h2>Libri preferiti</h2>
+<table th:if="${not #lists.isEmpty(books)}">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Descrizione</th>
+        <th>Prezzo</th>
+        <th>Dettaglio</th>
+        <th>Rimuovi</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.publicationYear}"></td>
+        <td th:text="${book.price}"></td>
+        <td><a th:href="@{/bookdetail(bookId=${book.getId()})}"> Dettaglio libro </a></td>
+        <td><a th:href="@{/removeBookUser(bookId=${book.getId()})}"> Rimuovi libro </a></td>
+    </tr>
+    </tbody>
+</table>
+<h2>Tutti i libri</h2>
+<table th:if="${not #lists.isEmpty(allBooks)}">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Anno di pubblicazione</th>
+        <th>Prezzo</th>
+        <th>Dettaglio</th>
+        <th>Edit</th>
+        <th>Add</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${allBooks}">
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.publicationYear}"></td>
+        <td th:text="${book.price}"></td>
+        <td><a th:href="@{/bookdetail(bookId=${book.getId()})}"> Dettaglio libro </a></td>
+        <td><a th:href="@{/edit(bookId=${book.getId()})}"> Edit libro </a></td>
+        <td><a th:href="@{/add(bookId=${book.getId()})}"> Aggiungi libro </a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</div>
+</html>
